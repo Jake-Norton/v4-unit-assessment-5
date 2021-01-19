@@ -3,10 +3,11 @@ const express = require('express'),
       userCtrl = require('./controllers/user'),
       postCtrl = require('./controllers/posts'),
       massive = require('massive'),
+      session = require('express-session'),
 
 const PORT = 8097;
 
-const {CONNECTION_STRING} = process.env;
+const {CONNECTION_STRING, SESSION_SECRET} = process.env;
 
 const app = express();
 
@@ -19,6 +20,15 @@ massive({
     app.set('db', db);
     console.log('db connected');
 });
+
+app.use(
+    session({
+      resave: true,
+      saveUninitialized: false,
+      secret: SESSION_SECRET,
+      cookie: {maxAge: 60000},
+    })
+);
 
 //Auth Endpoints
 app.post('/api/auth/register', userCtrl.register);
