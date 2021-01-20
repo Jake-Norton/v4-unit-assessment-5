@@ -5,7 +5,7 @@ const express = require('express'),
       massive = require('massive'),
       session = require('express-session'),
 
-const PORT = 8097;
+PORT = 8907;
 
 const {CONNECTION_STRING, SESSION_SECRET} = process.env;
 
