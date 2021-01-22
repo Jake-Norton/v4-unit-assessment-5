@@ -4,6 +4,7 @@ import homeLogo from './../../assets/home_logo.png';
 import newLogo from './../../assets/new_logo.png';
 import logoutLogo from './../../assets/shut_down.png';
 import './Nav.css';
+import {Link, withRouter} from 'react-router-dom'
 
 class Nav extends Component {
   constructor(props) {
@@ -43,4 +44,4 @@ class Nav extends Component {
   }
 }
 
-export default Nav;
+export default withRouter(Nav);
