@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 import axios from 'axios';
 import noImage from './../../assets/no_image.jpg';
 import './Post.css';
@@ -17,11 +18,16 @@ class Post extends Component {
     }
   }
 
-  componentDidMount() {
-    axios.get(`/api/post/${post.id}`)
+  getPosts = () => {
+    axios.get(`api/helo_posts/${this.props.id}`)
       .then(res => {
-        this.setState({ ...res.data, loading: false })
+        this.setState({posts: res.data})
       })
+      .catch(err => console.log(err))
+  }
+
+  componentDidMount() {
+    this.getPosts()
   }
 
   render() {
